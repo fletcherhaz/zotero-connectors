@@ -138,7 +138,11 @@ var backgroundInclude = [
 	'lib/SingleFileZ/extension/lib/single-file/core/bg/scripts.js',
 	'lib/SingleFileZ/extension/lib/single-file/fetch/bg/fetch.js',
 	'lib/SingleFileZ/extension/lib/single-file/frame-tree/bg/frame-tree.js',
-	'lib/SingleFileZ/extension/lib/single-file/lazy/bg/lazy-timeout.js'
+	'lib/SingleFileZ/extension/lib/single-file/lazy/bg/lazy-timeout.js',
+	'lib/SingleFileZ/extension/lib/zip/zip.js',
+	'lib/SingleFileZ/extension/lib/zip/z-worker.js',
+	'lib/SingleFileZ/extension/lib/zip/deflate.js',
+	'compression.js'
 ];
 
 

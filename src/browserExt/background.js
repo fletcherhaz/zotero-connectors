@@ -336,6 +336,12 @@ Zotero.Connector_Browser = new function() {
 		await this.injectScripts('singlefile-config.js', tab, frameId);
 	};
 	
+	this.compressSingleFile = async function(pageData, tab, frameId) {
+		const blob = await Zotero.Compression.compressPage(pageData, location.href);
+		// let url = URL.createObjectURL(blob);
+		// window.open(url);
+	};
+
 	this.openWindow = async function(url, options={}, tab=null) {
 		if (!tab) {
 			tab = (await browser.tabs.query({active: true}))[0];

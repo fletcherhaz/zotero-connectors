@@ -492,6 +492,7 @@ Zotero.Inject = new function() {
 	};
 	
 	this._saveAsWebpage = async function(options={}) {
+		console.time('SingleFileTime:SaveAsWebPage');
 		var sessionID = options.sessionID;
 		var title = options.title || document.title;
 		var translatorID = 'webpage' + (options.snapshot ? 'WithSnapshot' : '');
@@ -591,6 +592,7 @@ Zotero.Inject = new function() {
 				url: document.location.href,
 				translatorID
 			});
+			console.timeEnd('SingleFileTime:SaveAsWebPage');
 			return result;
 		} catch (e) {
 			// Client unavailable
@@ -623,6 +625,7 @@ Zotero.Inject = new function() {
 			else if (!e.value || e.value.libraryEditable != false) {
 				Zotero.Messaging.sendMessage("progressWindow.done", [false, 'unexpectedError']);
 			}
+			console.timeEnd('SingleFileTime:SaveAsWebPage');
 			throw e;
 		}
 	}

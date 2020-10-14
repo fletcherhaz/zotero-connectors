@@ -291,6 +291,8 @@ function copyResources {
 	mkdir -p "$browser_builddir/lib/SingleFileZ/extension/lib"
 	cp -r "$SRCDIR/zotero/resource/SingleFileZ/extension/lib/single-file" \
 		"$browser_builddir/lib/SingleFileZ/extension/lib/single-file"
+    cp -r "$SRCDIR/zotero/resource/SingleFileZ/extension/lib/zip" \
+            "$browser_builddir/lib/SingleFileZ/extension/lib/zip"
 	cp -r "$SRCDIR/zotero/resource/SingleFileZ/lib" "$browser_builddir/lib/SingleFileZ/lib"
 	# Copy SingleFileZ config object from client code
 	cp "$SRCDIR/zotero/chrome/content/zotero/xpcom/singlefile.js" "$browser_builddir/singlefile-config.js"

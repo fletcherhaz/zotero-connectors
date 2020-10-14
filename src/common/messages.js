@@ -130,6 +130,7 @@ var MESSAGES = {
 		onTranslators: false,
 		injectScripts: true,
 		injectSingleFile: true,
+		compressSingleFile: true,
 		isIncognito: true,
 		newerVersionRequiredPrompt: true,
 		openTab: false,

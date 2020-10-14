@@ -27,15 +27,26 @@ Zotero.SingleFile = {
 	retrievePageData: async function() {
 		try {
 			// Call to background script to inject SingleFile
+			console.time('SingleFileTime:Injection');
 			await Zotero.Connector_Browser.injectSingleFile();
+			console.timeEnd('SingleFileTime:Injection');
 
 			// Set up the user script before running SingleFile
+			console.time('SingleFileTime:RunUserScripts');
 			Zotero.SingleFile.runUserScripts();
+			console.timeEnd('SingleFileTime:RunUserScripts');
 
 			Zotero.debug("SingleFile: Retrieving page data");
+			console.time('SingleFileTime:GetPageData');
 			let pageData = await singlefile.extension.getPageData(Zotero.SingleFile.CONFIG);
+			console.timeEnd('SingleFileTime:GetPageData');
 			Zotero.debug("SingleFile: Done retrieving page data");
 
+			console.time('SingleFileTime:Compression');
+			await Zotero.Connector_Browser.compressSingleFile(pageData);
+			console.timeEnd('SingleFileTime:Compression');
+
+			console.time('SingleFileTime:ConvertResources');
 			// Replace Uint8Array objects with a UUID and place the resources as top-
 			// level Uint8Array objects ready for a multipart request. We can't convert
 			// them to binary blobs yet because Chrome doesn't support moving binary
@@ -65,6 +76,7 @@ Zotero.SingleFile = {
 				});
 			}
 			convertResources(pageData.resources);
+			console.timeEnd('SingleFileTime:ConvertResources');
 			
 			Zotero.debug("SingleFile: Done encoding page data");
 			return {
